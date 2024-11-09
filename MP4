@@ -1,0 +1,125 @@
+
+def getScores():
+    """
+    Opens the data file of names and scores... firstName, lastName, score1,
+    score2, score3, score4... reads each line of data as a str, divides the
+    line into the 6 values... str, str, int, int, int, int... puts those values
+    in a list, and returns a list of those lists.
+
+    Returns:
+        studentScores (list): A list of lists where each inner list contains
+        firstName (str), lastName (str), score1 (int), score2 (int), score3 (int), score4 (int)
+    """
+    studentScores = []
+    with open('MP4.txt', 'r') as file:
+        for line in file:
+            firstName, lastName, score1, score2, score3, score4 = line.split()
+            studentScores.append([firstName, lastName, int(score1), int(score2), int(score3), int(score4)])
+    return studentScores
+
+
+def addTestAverage(studentScores):
+    """
+    Finds the average of each student's test scores and appends that average
+    to the end of each student's list.
+
+    Args:
+        studentScores (list): A list of lists where each inner list contains
+        firstName (str), lastName (str), score1 (int), score2 (int), score3 (int), score4 (int)
+    """
+    for student in studentScores:
+        average = sum(student[2:]) / 4
+        student.append(average)
+
+
+def calcTotals(studentScores):
+    """
+    Finds the average of test1, test2, test3, test4, and the total average.
+    
+    Args:
+        studentScores (list): A list of lists where each inner list contains
+        firstName (str), lastName (str), score1 (int), score2 (int), score3 (int), score4 (int), average (float)
+
+    Returns:
+        totals (list): A list with 5 float values... the averages for test1, test2, test3, test4, and totalAverage
+    """
+    numStudents = len(studentScores)
+    totalTest1avg = sum([student[2] for student in studentScores]) / numStudents
+    totalTest2avg = sum([student[3] for student in studentScores]) / numStudents
+    totalTest3avg = sum([student[4] for student in studentScores]) / numStudents
+    totalTest4avg = sum([student[5] for student in studentScores]) / numStudents
+    totalAverage = sum([student[6] for student in studentScores]) / numStudents
+    return [totalTest1avg, totalTest2avg, totalTest3avg, totalTest4avg, totalAverage]
+
+
+def printScores(studentScores, totals):
+    """
+    Prints the entire list of student information including firstName, lastName, scores, and average.
+
+    Args:
+        studentScores (list): A list of lists where each inner list contains
+        firstName (str), lastName (str), score1 (int), score2 (int), score3 (int), score4 (int), average (float)
+        totals (list): A list of 5 float values... the averages for test1, test2, test3, test4, and totalAverage
+    """
+    print(f"{'Name':<25} {'Exam1':<8} {'Exam2':<8} {'Exam3':<8} {'Exam4':<8} {'Avg':<8}")
+    for firstName, lastName, score1, score2, score3, score4, avg in studentScores:
+        fullName = f"{firstName} {lastName}"
+        print(f"{fullName:<25} {score1:<8} {score2:<8} {score3:<8} {score4:<8} {avg:<8.2f}")
+    print()
+    print(f"Total {'':<19} {totals[0]:<8.2f} {totals[1]:<8.2f} {totals[2]:<8.2f} {totals[3]:<8.2f} {totals[4]:<8.2f}")
+
+
+def sortByName(studentScores):
+    """
+    Sorts the list of student info by the student's last name using the Bubble Sort algorithm.
+
+    Args:
+        studentScores (list): A list of lists where each inner list contains
+        firstName (str), lastName (str), score1 (int), score2 (int), score3 (int), score4 (int), average (float)
+    """
+    for i in range(len(studentScores) - 1):
+        for j in range(len(studentScores) - 1):
+            if studentScores[j][1] > studentScores[j + 1][1]:
+                studentScores[j], studentScores[j + 1] = studentScores[j + 1], studentScores[j]
+
+
+def sortByAverage(studentScores):
+    """
+    Sorts the list of student info by the test average using the Bubble Sort algorithm.
+
+    Args:
+        studentScores (list): A list of lists where each inner list contains
+        firstName (str), lastName (str), score1 (int), score2 (int), score3 (int), score4 (int), average (float)
+    """
+    for i in range(len(studentScores) - 1):
+        for j in range(len(studentScores) - 1):
+            if studentScores[j][6] < studentScores[j + 1][6]:
+                studentScores[j], studentScores[j + 1] = studentScores[j + 1], studentScores[j]
+
+# Main program execution
+
+
+studentScores = getScores()
+
+
+addTestAverage(studentScores)
+
+
+totals = calcTotals(studentScores)
+
+
+print("1.ORiginal Data:")
+print()
+printScores(studentScores, totals)
+
+  
+sortByName(studentScores)
+print("\n 2.Sorted by Last Name:")
+print()
+printScores(studentScores, totals)
+
+    
+sortByAverage(studentScores)
+print("\n 3.Sorted by Average:")
+print()
+printScores(studentScores, totals)
