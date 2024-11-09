@@ -9,7 +9,7 @@ from flask import  Flask,render_template,jsonify
 app=Flask(__name__)
 @app.route("/")
 def helloapp():
-    return render_template('home.html',expensecategory=categories)
+    return render_template('home.html')
 
 # @app.route("/expense")
 # def list_expense():
