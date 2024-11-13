@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Expense Manager</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="script.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
@@ -12,16 +13,19 @@
         }
     </style>
 </head>
+
 <body class="bg-gray-100">
     <header class="bg-blue-600 text-white p-4">
         <div class="container mx-auto flex justify-between items-center">
             <h1 class="text-2xl font-bold">Expense Manager</h1>
             <nav>
                 <ul class="flex space-x-4">
-                    <li><a href="#" class="hover:underline">Home</a></li>
-                    <li><a href="#" class="hover:underline">Expenses</a></li>
-                    <li><a href="#" class="hover:underline">Reports</a></li>
-                    <li><a href="#" class="hover:underline">Settings</a></li>
+                    <li><a href="http://127.0.0.1:5000/welcome" class="hover:underline">Home</a></li>
+                    <li><a href="http://127.0.0.1:5000/login" class="hover:underline">login</a></li>
+                    <li><a href="http://127.0.0.1:5000/signup" class="hover:underline">Signup</a></li>
+                    <li><a href="http://127.0.0.1:5000/expenses" class="hover:underline">Expenses</a></li>
+                    <li><a href="http://127.0.0.1:5000/reports" class="hover:underline">Reports</a></li>
+                    <li><a href="http://127.0.0.1:5000/Settings" class="hover:underline">Settings</a></li>
                 </ul>
             </nav>
         </div>
@@ -123,16 +127,7 @@
                 </tbody>
             </table>
         </div>
-        <!-- <div>
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <h2 class="text-xl font-bold mb-4"> show category</h2>
-                <p>  {% for  category in categories %}
-                       <div>{category["1"]}</div>
-
-                </p>
-            
-    
-        </div> -->
+        
     </main>
     
     <footer class="bg-blue-600 text-white p-4 mt-8">
